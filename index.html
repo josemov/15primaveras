@@ -184,44 +184,58 @@
 
         textarea { resize: none; height: 90px; }
 
-        /* ===== FILE DROP ===== */
-        .drop-zone {
-            border: 1.5px dashed rgba(200, 168, 120, 0.50);
-            border-radius: 18px;
-            padding: 30px 16px;
-            text-align: center;
+        /* ===== PHOTO PICKER BUTTONS ===== */
+        .picker-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .btn-picker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 18px 10px;
+            border-radius: 16px;
+            border: 1.5px dashed rgba(200, 168, 120, 0.45);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.65);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
             cursor: pointer;
-            transition: border-color 0.25s, background 0.25s;
+            transition: border-color 0.2s, background 0.2s, color 0.2s;
             position: relative;
             overflow: hidden;
-            margin-bottom: 18px;
         }
 
-        .drop-zone:hover, .drop-zone.drag-over {
+        .btn-picker:hover {
             border-color: var(--gold);
-            background: rgba(201, 168, 76, 0.08);
+            background: rgba(201, 168, 76, 0.10);
+            color: var(--gold);
         }
 
-        .drop-zone input[type="file"] {
+        .btn-picker input[type="file"] {
             position: absolute;
             inset: 0;
             opacity: 0;
             cursor: pointer;
             width: 100%;
             height: 100%;
+            font-size: 0;
         }
 
-        .drop-icon { font-size: 36px; margin-bottom: 10px; display: block; }
+        .btn-picker .pick-icon { font-size: 26px; }
 
-        .drop-label {
-            font-size: 13px;
-            color: rgba(255,255,255,0.55);
-            font-weight: 300;
-        }
-
-        .drop-label strong {
-            color: var(--gold);
-            font-weight: 500;
+        .picker-hint {
+            font-size: 10px;
+            color: rgba(255,255,255,0.28);
+            text-align: center;
+            margin-bottom: 14px;
+            letter-spacing: 0.03em;
         }
 
         /* ===== PREVIEW GRID ===== */
@@ -232,14 +246,41 @@
             margin-bottom: 18px;
         }
 
+        .thumb-wrap {
+            position: relative;
+            animation: popIn 0.3s ease both;
+        }
+
         .preview-thumb {
             aspect-ratio: 1;
             border-radius: 10px;
             object-fit: cover;
             width: 100%;
             border: 1px solid rgba(255,255,255,0.15);
-            animation: popIn 0.3s ease both;
+            display: block;
         }
+
+        .thumb-del {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.65);
+            border: none;
+            color: #fff;
+            font-size: 11px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.15s;
+        }
+
+        .thumb-del:hover { background: rgba(220,60,60,0.85); }
 
         @keyframes popIn {
             from { opacity: 0; transform: scale(0.85); }
@@ -404,13 +445,23 @@
                 <textarea id="inp-message" placeholder="Escríbele un mensaje a Valeria... 💌"></textarea>
             </div>
 
-            <!-- Zona de carga -->
-            <div class="drop-zone" id="drop-zone">
-                <input type="file" id="inp-files" multiple accept="image/*">
-                <span class="drop-icon">🖼️</span>
-                <p class="drop-label"><strong>Toca aquí</strong> para elegir fotos<br>
-                <span style="font-size:11px; color:rgba(255,255,255,0.3);">JPG, PNG, HEIC · máx. 5 fotos · 10 MB c/u</span></p>
+            <!-- Botones de selección de fotos -->
+            <div class="picker-row">
+                <!-- Botón Cámara (abre cámara directamente en móvil) -->
+                <label class="btn-picker" id="btn-camera">
+                    <input type="file" id="inp-camera" accept="image/*" capture="environment" multiple>
+                    <span class="pick-icon">📷</span>
+                    <span>Cámara</span>
+                </label>
+
+                <!-- Botón Galería (abre el selector de archivos) -->
+                <label class="btn-picker" id="btn-gallery">
+                    <input type="file" id="inp-gallery" accept="image/*" multiple>
+                    <span class="pick-icon">🖼️</span>
+                    <span>Galería</span>
+                </label>
             </div>
+            <p class="picker-hint">JPG · PNG · HEIC &nbsp;·&nbsp; máx. 10 fotos · 10 MB c/u</p>
 
             <!-- Miniaturas de previsualización -->
             <div id="preview-grid"></div>
@@ -474,33 +525,54 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFO84rpYnnZSw5
     }
 })();
 
-// -------- Drag & Drop --------
-const dropZone  = document.getElementById('drop-zone');
-const inpFiles  = document.getElementById('inp-files');
+// -------- Acumulador de fotos --------
 const previewEl = document.getElementById('preview-grid');
+let selectedFiles = [];   // array persistente de File objects
+const MAX_PHOTOS = 10;
 
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', e => {
-    e.preventDefault();
-    dropZone.classList.remove('drag-over');
-    inpFiles.files = e.dataTransfer.files;
-    mostrarPreviews(inpFiles.files);
-});
+function agregarFotos(nuevos) {
+    const arr = Array.from(nuevos);
+    arr.forEach(f => {
+        // evitar duplicados por nombre + tamaño
+        const existe = selectedFiles.some(s => s.name === f.name && s.size === f.size);
+        if (!existe && selectedFiles.length < MAX_PHOTOS) selectedFiles.push(f);
+    });
+    renderPreviews();
+}
 
-inpFiles.addEventListener('change', () => mostrarPreviews(inpFiles.files));
-
-function mostrarPreviews(files) {
+function renderPreviews() {
     previewEl.innerHTML = '';
-    const arr = Array.from(files).slice(0, 5);
-    arr.forEach(file => {
+    selectedFiles.forEach((file, idx) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'thumb-wrap';
+
         const img = document.createElement('img');
         img.className = 'preview-thumb';
-        img.src = URL.createObjectURL(file);
-        img.onload = () => URL.revokeObjectURL(img.src);
-        previewEl.appendChild(img);
+        const url = URL.createObjectURL(file);
+        img.src = url;
+        img.onload = () => URL.revokeObjectURL(url);
+
+        const del = document.createElement('button');
+        del.className = 'thumb-del';
+        del.innerHTML = '✕';
+        del.title = 'Quitar foto';
+        del.onclick = (e) => { e.preventDefault(); selectedFiles.splice(idx, 1); renderPreviews(); };
+
+        wrap.appendChild(img);
+        wrap.appendChild(del);
+        previewEl.appendChild(wrap);
     });
 }
+
+// Conectar ambos inputs al acumulador
+document.getElementById('inp-camera').addEventListener('change', function() {
+    agregarFotos(this.files);
+    this.value = '';   // reset para poder seleccionar la misma foto de nuevo
+});
+document.getElementById('inp-gallery').addEventListener('change', function() {
+    agregarFotos(this.files);
+    this.value = '';
+});
 
 // -------- Convertir a Base64 --------
 function toBase64(file) {
@@ -517,11 +589,11 @@ async function enviarFotos() {
     const name    = document.getElementById('inp-name').value.trim();
     const email   = document.getElementById('inp-email').value.trim();
     const message = document.getElementById('inp-message').value.trim();
-    const files   = Array.from(inpFiles.files).slice(0, 5);
+    const files   = selectedFiles.slice(0, MAX_PHOTOS);
 
     // Validación básica
     if (!name) { shake(document.getElementById('inp-name')); return; }
-    if (files.length === 0) { shake(dropZone); return; }
+    if (files.length === 0) { shake(document.getElementById('btn-gallery')); return; }
 
     // ¿Ya configuraste la URL?
     if (APPS_SCRIPT_URL === "PEGAR_URL_DE_GOOGLE_APPS_SCRIPT_AQUI") {
@@ -584,7 +656,9 @@ function reiniciar() {
     document.getElementById('inp-name').value    = '';
     document.getElementById('inp-email').value   = '';
     document.getElementById('inp-message').value = '';
-    inpFiles.value = '';
+    document.getElementById('inp-camera').value  = '';
+    document.getElementById('inp-gallery').value = '';
+    selectedFiles = [];
     previewEl.innerHTML = '';
     document.getElementById('progress-wrap').style.display = 'none';
     document.getElementById('progress-text').style.display = 'none';
