@@ -468,7 +468,7 @@
                     <span>Galería</span>
                 </label>
             </div>
-            <p class="picker-hint">Fotos · Videos · JPG · PNG · MP4 · MOV &nbsp;·&nbsp; sin límite de tamaño</p>
+            <p class="picker-hint">Fotos · Videos · JPG · PNG · MP4 · MOV &nbsp;·&nbsp; máx. 45 MB por archivo</p>
 
             <!-- Miniaturas de previsualización -->
             <div id="preview-grid"></div>
@@ -537,13 +537,27 @@ const previewEl = document.getElementById('preview-grid');
 let selectedFiles = [];   // array persistente de File objects
 const MAX_PHOTOS = 10;
 
+const MAX_SIZE_MB = 45;
+const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
 function agregarFotos(nuevos) {
     const arr = Array.from(nuevos);
+    const rechazados = [];
+
     arr.forEach(f => {
+        if (f.size > MAX_SIZE_BYTES) {
+            rechazados.push(`${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)`);
+            return;
+        }
         // evitar duplicados por nombre + tamaño
         const existe = selectedFiles.some(s => s.name === f.name && s.size === f.size);
         if (!existe && selectedFiles.length < MAX_PHOTOS) selectedFiles.push(f);
     });
+
+    if (rechazados.length > 0) {
+        alert(`⚠️ ${rechazados.length} archivo(s) superan el límite de ${MAX_SIZE_MB} MB y no se agregaron:\n\n${rechazados.join('\n')}`);
+    }
+
     renderPreviews();
 }
 
