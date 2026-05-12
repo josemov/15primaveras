@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis 15 Años – Valeria ✨</title>
+    <meta name="description" content="Comparte tus fotos y recuerdos de la quinceañera de Valeria.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --rose:    #E8B4A4;
+            --gold:    #C9A84C;
+            --cream:   #FDF8F5;
+            --dark:    #3A2A28;
+            --muted:   #9A8078;
+            --glass:   rgba(255, 255, 255, 0.22);
+            --glass-b: rgba(255, 255, 255, 0.40);
+            --shadow:  rgba(60, 30, 20, 0.12);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #1a0f0e;
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== BACKGROUND ===== */
+        .bg-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(200, 120, 100, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 70% 70% at 80% 90%, rgba(180, 130, 70,  0.30) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,240,230,  0.10) 0%, transparent 70%),
+                linear-gradient(160deg, #1a0f0e 0%, #2c1a16 40%, #1f1409 100%);
+        }
+
+        /* Floating petals */
+        .petal {
+            position: fixed;
+            width: 10px;
+            height: 14px;
+            border-radius: 70% 30% 70% 30% / 50% 50%;
+            opacity: 0;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0%   { transform: translateY(-30px) rotate(0deg);    opacity: 0.8; }
+            100% { transform: translateY(110vh)  rotate(360deg);  opacity: 0;   }
+        }
+
+        /* ===== LAYOUT ===== */
+        .page {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 60px;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(255,255,255,0.28);
+            border-radius: 32px;
+            padding: 40px 30px;
+            box-shadow:
+                0 8px 40px var(--shadow),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0)    scale(1);    }
+        }
+
+        /* ===== HEADER ===== */
+        .header { text-align: center; margin-bottom: 32px; }
+
+        .subtitle-top {
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(52px, 14vw, 72px);
+            font-weight: 300;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 0 2px 20px rgba(230,170,140,0.4);
+            letter-spacing: 0.02em;
+        }
+
+        .subtitle-bottom {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: var(--rose);
+            margin-top: 6px;
+            display: block;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            opacity: 0.6;
+        }
+        .divider span { font-size: 16px; }
+
+        .tagline {
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        /* ===== FORM ===== */
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .field { margin-bottom: 14px; }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.10);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            outline: none;
+            transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+            -webkit-appearance: none;
+        }
+
+        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35); }
+
+        input:focus, textarea:focus {
+            border-color: var(--rose);
+            background: rgba(255,255,255,0.16);
+            box-shadow: 0 0 0 3px rgba(232, 180, 164, 0.20);
+        }
+
+        textarea { resize: none; height: 90px; }
+
+        /* ===== FILE DROP ===== */
+        .drop-zone {
+            border: 1.5px dashed rgba(200, 168, 120, 0.50);
+            border-radius: 18px;
+            padding: 30px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.25s, background 0.25s;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .drop-zone:hover, .drop-zone.drag-over {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
+        }
+
+        .drop-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .drop-icon { font-size: 36px; margin-bottom: 10px; display: block; }
+
+        .drop-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 300;
+        }
+
+        .drop-label strong {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* ===== PREVIEW GRID ===== */
+        #preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .preview-thumb {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            object-fit: cover;
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.15);
+            animation: popIn 0.3s ease both;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to   { opacity: 1; transform: scale(1);    }
+        }
+
+        /* ===== BUTTON ===== */
+        .btn-send {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+            box-shadow: 0 6px 24px rgba(200, 130, 100, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-send::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .btn-send:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(200, 130, 100, 0.50);
+            filter: brightness(1.08);
+        }
+
+        .btn-send:hover::before { opacity: 1; }
+
+        .btn-send:active:not(:disabled) { transform: scale(0.98); }
+
+        .btn-send:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-wrap {
+            display: none;
+            margin-bottom: 16px;
+            background: rgba(255,255,255,0.10);
+            border-radius: 100px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--rose), var(--gold));
+            border-radius: 100px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            display: none;
+        }
+
+        /* ===== SUCCESS / ERROR STATES ===== */
+        .state-msg {
+            display: none;
+            text-align: center;
+            padding: 26px 10px;
+            animation: slideUp 0.5s ease both;
+        }
+
+        .state-msg .big-icon { font-size: 52px; display: block; margin-bottom: 12px; }
+        .state-msg h3 { color: #fff; font-size: 20px; font-weight: 400; margin-bottom: 8px; }
+        .state-msg p  { color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 300; }
+
+        .btn-again {
+            margin-top: 20px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.7);
+            padding: 10px 28px;
+            border-radius: 100px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+        .btn-again:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201,168,76,0.08);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 24px;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.22);
+            text-align: center;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 380px) {
+            .card { padding: 28px 18px; border-radius: 24px; }
+            .name { font-size: 52px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fondo animado -->
+<div class="bg-wrap" id="bg-wrap"></div>
+
+<div class="page">
+    <div class="card" id="card">
+
+        <!-- CABECERA -->
+        <div class="header">
+            <span class="subtitle-top">Estás invitada a celebrar</span>
+            <div class="name">Valeria</div>
+            <span class="subtitle-bottom">Mis Quince Años ✨</span>
+
+            <div class="divider"><span>🌸</span></div>
+
+            <p class="tagline">
+                20 de Diciembre de 2026 · 20:00 hs<br>
+                <span style="color:rgba(255,255,255,0.4); font-size:11px;">Quinta "Las Camelias", Caracas</span>
+            </p>
+        </div>
+
+        <!-- FORMULARIO DE FOTOS -->
+        <div id="form-section">
+            <p class="section-title">📸 Comparte tus Fotos</p>
+
+            <div class="field">
+                <input type="text" id="inp-name" placeholder="Tu nombre" required autocomplete="name">
+            </div>
+
+            <div class="field">
+                <input type="email" id="inp-email" placeholder="Tu correo (opcional)" autocomplete="email">
+            </div>
+
+            <div class="field">
+                <textarea id="inp-message" placeholder="Escríbele un mensaje a Valeria... 💌"></textarea>
+            </div>
+
+            <!-- Zona de carga -->
+            <div class="drop-zone" id="drop-zone">
+                <input type="file" id="inp-files" multiple accept="image/*">
+                <span class="drop-icon">🖼️</span>
+                <p class="drop-label"><strong>Toca aquí</strong> para elegir fotos<br>
+                <span style="font-size:11px; color:rgba(255,255,255,0.3);">JPG, PNG, HEIC · máx. 5 fotos · 10 MB c/u</span></p>
+            </div>
+
+            <!-- Miniaturas de previsualización -->
+            <div id="preview-grid"></div>
+
+            <!-- Barra de progreso -->
+            <div class="progress-wrap" id="progress-wrap">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-text" id="progress-text"></p>
+
+            <button class="btn-send" id="btn-send" onclick="enviarFotos()">
+                Enviar a Valeria
+            </button>
+        </div>
+
+        <!-- ESTADO ÉXITO -->
+        <div class="state-msg" id="msg-success">
+            <span class="big-icon">💖</span>
+            <h3>¡Gracias por compartir!</h3>
+            <p>Tus fotos y tu mensaje ya están<br>guardados en el álbum de Valeria.</p>
+            <button class="btn-again" onclick="reiniciar()">Subir más fotos</button>
+        </div>
+
+        <!-- ESTADO ERROR -->
+        <div class="state-msg" id="msg-error">
+            <span class="big-icon">😕</span>
+            <h3>Algo falló</h3>
+            <p id="error-detail">Por favor revisa tu conexión e intenta de nuevo.</p>
+            <button class="btn-again" onclick="reiniciar()">Intentar de nuevo</button>
+        </div>
+
+    </div>
+
+    <p class="footer">Hecho con amor para Valeria · 2026</p>
+</div>
+
+<script>
+// ============================================================
+//  CONFIGURACIÓN — Pegá aquí tu URL de Google Apps Script
+// ============================================================
+const APPS_SCRIPT_URL = "PEGAR_URL_DE_GOOGLE_APPS_SCRIPT_AQUI";
+// ============================================================
+
+// -------- Pétalos decorativos --------
+(function spawnPetals() {
+    const colors = ['#E8B4A4','#C9A84C','#F5D6CC','#E8C88A','#F9E4DC'];
+    const wrap   = document.getElementById('bg-wrap');
+    for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+            left: ${Math.random() * 100}vw;
+            background: ${colors[Math.random() * colors.length | 0]};
+            width: ${6 + Math.random() * 10}px;
+            height: ${8 + Math.random() * 14}px;
+            animation-duration: ${8 + Math.random() * 14}s;
+            animation-delay: ${Math.random() * 12}s;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '70% 30% 70% 30% / 50% 50%'};
+        `;
+        wrap.appendChild(p);
+    }
+})();
+
+// -------- Drag & Drop --------
+const dropZone  = document.getElementById('drop-zone');
+const inpFiles  = document.getElementById('inp-files');
+const previewEl = document.getElementById('preview-grid');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    inpFiles.files = e.dataTransfer.files;
+    mostrarPreviews(inpFiles.files);
+});
+
+inpFiles.addEventListener('change', () => mostrarPreviews(inpFiles.files));
+
+function mostrarPreviews(files) {
+    previewEl.innerHTML = '';
+    const arr = Array.from(files).slice(0, 5);
+    arr.forEach(file => {
+        const img = document.createElement('img');
+        img.className = 'preview-thumb';
+        img.src = URL.createObjectURL(file);
+        img.onload = () => URL.revokeObjectURL(img.src);
+        previewEl.appendChild(img);
+    });
+}
+
+// -------- Convertir a Base64 --------
+function toBase64(file) {
+    return new Promise((res, rej) => {
+        const r = new FileReader();
+        r.readAsDataURL(file);
+        r.onload  = () => res(r.result.split(',')[1]);
+        r.onerror = rej;
+    });
+}
+
+// -------- Función principal --------
+async function enviarFotos() {
+    const name    = document.getElementById('inp-name').value.trim();
+    const email   = document.getElementById('inp-email').value.trim();
+    const message = document.getElementById('inp-message').value.trim();
+    const files   = Array.from(inpFiles.files).slice(0, 5);
+
+    // Validación básica
+    if (!name) { shake(document.getElementById('inp-name')); return; }
+    if (files.length === 0) { shake(dropZone); return; }
+
+    // ¿Ya configuraste la URL?
+    if (APPS_SCRIPT_URL === "PEGAR_URL_DE_GOOGLE_APPS_SCRIPT_AQUI") {
+        alert("⚠️ Atención: Primero configura la URL de Google Apps Script en el código.\n\nMira el archivo INSTRUCCIONES_DRIVE.md");
+        return;
+    }
+
+    // Bloquear UI
+    const btn = document.getElementById('btn-send');
+    btn.disabled = true;
+
+    const progressWrap = document.getElementById('progress-wrap');
+    const progressBar  = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    progressWrap.style.display = 'block';
+    progressText.style.display = 'block';
+
+    try {
+        for (let i = 0; i < files.length; i++) {
+            const file   = files[i];
+            const b64    = await toBase64(file);
+            const pct    = Math.round(((i) / files.length) * 90);
+            progressBar.style.width = pct + '%';
+            progressText.textContent = `Enviando foto ${i + 1} de ${files.length}...`;
+
+            await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode:   'no-cors',   // requerido por Apps Script
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    message,
+                    fileName: file.name,
+                    mimeType: file.type,
+                    data: b64,
+                    isFirst: i === 0   // para escribir fila de resumen solo una vez
+                })
+            });
+        }
+
+        progressBar.style.width = '100%';
+        setTimeout(() => mostrar('success'), 400);
+
+    } catch (err) {
+        console.error(err);
+        document.getElementById('error-detail').textContent = err.message || 'Error de red. Intenta de nuevo.';
+        mostrar('error');
+    }
+}
+
+// -------- UI helpers --------
+function mostrar(estado) {
+    document.getElementById('form-section').style.display  = 'none';
+    document.getElementById('msg-success').style.display   = estado === 'success' ? 'block' : 'none';
+    document.getElementById('msg-error').style.display     = estado === 'error'   ? 'block' : 'none';
+}
+
+function reiniciar() {
+    document.getElementById('inp-name').value    = '';
+    document.getElementById('inp-email').value   = '';
+    document.getElementById('inp-message').value = '';
+    inpFiles.value = '';
+    previewEl.innerHTML = '';
+    document.getElementById('progress-wrap').style.display = 'none';
+    document.getElementById('progress-text').style.display = 'none';
+    document.getElementById('progress-bar').style.width    = '0%';
+    document.getElementById('btn-send').disabled = false;
+    document.getElementById('form-section').style.display  = 'block';
+    document.getElementById('msg-success').style.display   = 'none';
+    document.getElementById('msg-error').style.display     = 'none';
+}
+
+function shake(el) {
+    el.style.animation = 'none';
+    el.offsetHeight; // reflow
+    el.style.animation = 'shake 0.4s ease';
+    el.addEventListener('animationend', () => el.style.animation = '', { once: true });
+}
+</script>
+
+<style>
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px); }
+    40%       { transform: translateX( 8px); }
+    60%       { transform: translateX(-5px); }
+    80%       { transform: translateX( 5px); }
+}
+</style>
+
+</body>
+</html>
