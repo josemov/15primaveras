@@ -187,8 +187,8 @@
         /* ===== PHOTO PICKER BUTTONS ===== */
         .picker-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
             margin-bottom: 14px;
         }
 
@@ -445,23 +445,30 @@
                 <textarea id="inp-message" placeholder="Escríbele un mensaje a Valeria... 💌"></textarea>
             </div>
 
-            <!-- Botones de selección de fotos -->
+            <!-- Botones de selección de fotos y videos -->
             <div class="picker-row">
-                <!-- Botón Cámara (abre cámara directamente en móvil) -->
+                <!-- Foto con cámara -->
                 <label class="btn-picker" id="btn-camera">
-                    <input type="file" id="inp-camera" accept="image/*,video/*" capture="environment" multiple>
+                    <input type="file" id="inp-camera" accept="image/*" capture="environment">
                     <span class="pick-icon">📷</span>
-                    <span>Cámara</span>
+                    <span>Foto</span>
                 </label>
 
-                <!-- Botón Galería (abre el selector de archivos) -->
+                <!-- Video con cámara -->
+                <label class="btn-picker" id="btn-video">
+                    <input type="file" id="inp-video" accept="video/*" capture="environment">
+                    <span class="pick-icon">🎬</span>
+                    <span>Video</span>
+                </label>
+
+                <!-- Galería (fotos y videos existentes) -->
                 <label class="btn-picker" id="btn-gallery">
                     <input type="file" id="inp-gallery" accept="image/*,video/*" multiple>
-                    <span class="pick-icon">🎥</span>
-                    <span>Galería / Video</span>
+                    <span class="pick-icon">🖼️</span>
+                    <span>Galería</span>
                 </label>
             </div>
-            <p class="picker-hint">Fotos o videos · JPG · PNG · HEIC · MP4 · MOV &nbsp;·&nbsp; sin límite de tamaño</p>
+            <p class="picker-hint">Fotos · Videos · JPG · PNG · MP4 · MOV &nbsp;·&nbsp; sin límite de tamaño</p>
 
             <!-- Miniaturas de previsualización -->
             <div id="preview-grid"></div>
@@ -591,14 +598,12 @@ function renderPreviews() {
     });
 }
 
-// Conectar ambos inputs al acumulador
-document.getElementById('inp-camera').addEventListener('change', function() {
-    agregarFotos(this.files);
-    this.value = '';   // reset para poder seleccionar la misma foto de nuevo
-});
-document.getElementById('inp-gallery').addEventListener('change', function() {
-    agregarFotos(this.files);
-    this.value = '';
+// Conectar los tres inputs al acumulador
+['inp-camera', 'inp-video', 'inp-gallery'].forEach(id => {
+    document.getElementById(id).addEventListener('change', function() {
+        agregarFotos(this.files);
+        this.value = '';   // reset para poder seleccionar de nuevo
+    });
 });
 
 // -------- Convertir a Base64 --------
@@ -684,6 +689,7 @@ function reiniciar() {
     document.getElementById('inp-email').value   = '';
     document.getElementById('inp-message').value = '';
     document.getElementById('inp-camera').value  = '';
+    document.getElementById('inp-video').value   = '';
     document.getElementById('inp-gallery').value = '';
     selectedFiles = [];
     previewEl.innerHTML = '';
