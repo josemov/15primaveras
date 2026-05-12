@@ -431,7 +431,7 @@
 
         <!-- FORMULARIO DE FOTOS -->
         <div id="form-section">
-            <p class="section-title">📸 Comparte tus Fotos</p>
+            <p class="section-title">📸 Fotos y Videos para Valeria</p>
 
             <div class="field">
                 <input type="text" id="inp-name" placeholder="Tu nombre" required autocomplete="name">
@@ -449,19 +449,19 @@
             <div class="picker-row">
                 <!-- Botón Cámara (abre cámara directamente en móvil) -->
                 <label class="btn-picker" id="btn-camera">
-                    <input type="file" id="inp-camera" accept="image/*" capture="environment" multiple>
+                    <input type="file" id="inp-camera" accept="image/*,video/*" capture="environment" multiple>
                     <span class="pick-icon">📷</span>
                     <span>Cámara</span>
                 </label>
 
                 <!-- Botón Galería (abre el selector de archivos) -->
                 <label class="btn-picker" id="btn-gallery">
-                    <input type="file" id="inp-gallery" accept="image/*" multiple>
-                    <span class="pick-icon">🖼️</span>
-                    <span>Galería</span>
+                    <input type="file" id="inp-gallery" accept="image/*,video/*" multiple>
+                    <span class="pick-icon">🎥</span>
+                    <span>Galería / Video</span>
                 </label>
             </div>
-            <p class="picker-hint">JPG · PNG · HEIC &nbsp;·&nbsp; máx. 10 fotos · 10 MB c/u</p>
+            <p class="picker-hint">Fotos o videos · JPG · PNG · HEIC · MP4 · MOV &nbsp;·&nbsp; sin límite de tamaño</p>
 
             <!-- Miniaturas de previsualización -->
             <div id="preview-grid"></div>
@@ -546,19 +546,46 @@ function renderPreviews() {
         const wrap = document.createElement('div');
         wrap.className = 'thumb-wrap';
 
-        const img = document.createElement('img');
-        img.className = 'preview-thumb';
+        const isVideo = file.type.startsWith('video/');
         const url = URL.createObjectURL(file);
-        img.src = url;
-        img.onload = () => URL.revokeObjectURL(url);
+
+        let media;
+        if (isVideo) {
+            media = document.createElement('video');
+            media.className = 'preview-thumb';
+            media.src = url;
+            media.muted = true;
+            media.playsInline = true;
+            media.controls = false;          // solo muestra el thumb
+            media.preload = 'metadata';      // carga el primer frame
+            // liberar la URL cuando se carguen los metadatos
+            media.onloadedmetadata = () => URL.revokeObjectURL(url);
+            // reproducir brevemente para mostrar el primer frame
+            media.addEventListener('loadeddata', () => {
+                media.currentTime = 0.5;
+            }, { once: true });
+        } else {
+            media = document.createElement('img');
+            media.className = 'preview-thumb';
+            media.src = url;
+            media.onload = () => URL.revokeObjectURL(url);
+        }
 
         const del = document.createElement('button');
         del.className = 'thumb-del';
         del.innerHTML = '✕';
-        del.title = 'Quitar foto';
+        del.title = isVideo ? 'Quitar video' : 'Quitar foto';
         del.onclick = (e) => { e.preventDefault(); selectedFiles.splice(idx, 1); renderPreviews(); };
 
-        wrap.appendChild(img);
+        // Etiqueta de tipo para videos
+        if (isVideo) {
+            const badge = document.createElement('span');
+            badge.style.cssText = 'position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,0.6);color:#fff;font-size:9px;padding:2px 5px;border-radius:6px;pointer-events:none;';
+            badge.textContent = '▶ VIDEO';
+            wrap.appendChild(badge);
+        }
+
+        wrap.appendChild(media);
         wrap.appendChild(del);
         previewEl.appendChild(wrap);
     });
