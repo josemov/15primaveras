@@ -326,7 +326,13 @@ async function loadGallery() {
         const response = await fetch(APPS_SCRIPT_URL);
         const data = await response.json();
 
-        if (data.ok && data.files.length > 0) {
+        if (!data.ok) {
+            console.error('Error del servidor:', data.error);
+            loader.innerHTML = `Hubo un error en el servidor: ${data.error}. <br><br><small>Revisa que el ID de la carpeta sea correcto y que el script esté bien publicado.</small>`;
+            return;
+        }
+
+        if (data.files.length > 0) {
             loader.style.display = 'none';
             
             data.files.forEach((file, index) => {
