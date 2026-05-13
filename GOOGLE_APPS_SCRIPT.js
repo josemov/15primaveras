@@ -94,3 +94,34 @@ function testSetup() {
   const folder = DriveApp.getFolderById(FOLDER_ID);
   Logger.log("✅ Carpeta encontrada: " + folder.getName());
 }
+
+// ============================================================
+// Endpoint GET para obtener la lista de fotos y videos
+// ============================================================
+function doGet(e) {
+  try {
+    const folder = DriveApp.getFolderById(FOLDER_ID);
+    const files = folder.getFiles();
+    const fileList = [];
+
+    while (files.hasNext()) {
+      const file = files.next();
+      fileList.push({
+        id: file.getId(),
+        name: file.getName(),
+        url: `https://drive.google.com/uc?export=view&id=${file.getId()}`,
+        downloadUrl: `https://drive.google.com/uc?export=download&id=${file.getId()}`,
+        mimeType: file.getMimeType()
+      });
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true, files: fileList }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: false, error: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}

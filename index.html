@@ -145,6 +145,29 @@
             text-align: center;
         }
 
+        /* ===== BUTTON ===== */
+        .btn-nav {
+            display: inline-block;
+            margin-bottom: 24px;
+            padding: 10px 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 100px;
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.8);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+        }
+        
+        .btn-nav:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border-color: var(--gold);
+        }
+
         /* ===== FORM ===== */
         .section-title {
             font-family: 'Cormorant Garamond', serif;
@@ -414,6 +437,10 @@
 
 <div class="page">
     <div class="card" id="card">
+
+        <div style="text-align: right;">
+            <a href="galeria.html" class="btn-nav">Ver Galería →</a>
+        </div>
 
         <!-- CABECERA -->
         <div class="header">
