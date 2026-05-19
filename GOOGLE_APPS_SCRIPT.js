@@ -106,13 +106,18 @@ function doGet(e) {
 
     while (files.hasNext()) {
       const file = files.next();
-      fileList.push({
-        id: file.getId(),
-        name: file.getName(),
-        url: `https://drive.google.com/uc?export=view&id=${file.getId()}`,
-        downloadUrl: `https://drive.google.com/uc?export=download&id=${file.getId()}`,
-        mimeType: file.getMimeType()
-      });
+      const mimeType = file.getMimeType();
+      
+      // Solo devolver imágenes y videos (ignorar la hoja de cálculo u otros)
+      if (mimeType.startsWith('image/') || mimeType.startsWith('video/')) {
+        fileList.push({
+          id: file.getId(),
+          name: file.getName(),
+          url: `https://drive.google.com/uc?export=view&id=${file.getId()}`,
+          downloadUrl: `https://drive.google.com/uc?export=download&id=${file.getId()}`,
+          mimeType: mimeType
+        });
+      }
     }
 
     return ContentService

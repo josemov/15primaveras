@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis 15 Años – Valeria ✨</title>
     <meta name="description" content="Comparte tus fotos y recuerdos de la quinceañera de Valeria.">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <style>
         /* ===== VARIABLES & RESET ===== */
         :root {
-            --rose:    #E8B4A4;
-            --gold:    #C9A84C;
-            --cream:   #FDF8F5;
-            --dark:    #3A2A28;
-            --muted:   #9A8078;
-            --glass:   rgba(255, 255, 255, 0.22);
+            --rose: #E8B4A4;
+            --gold: #C9A84C;
+            --cream: #FDF8F5;
+            --dark: #3A2A28;
+            --muted: #9A8078;
+            --glass: rgba(255, 255, 255, 0.22);
             --glass-b: rgba(255, 255, 255, 0.40);
-            --shadow:  rgba(60, 30, 20, 0.12);
+            --shadow: rgba(60, 30, 20, 0.12);
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -36,8 +45,8 @@
             z-index: 0;
             background:
                 radial-gradient(ellipse 80% 60% at 20% 10%, rgba(200, 120, 100, 0.35) 0%, transparent 60%),
-                radial-gradient(ellipse 70% 70% at 80% 90%, rgba(180, 130, 70,  0.30) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,240,230,  0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 70% 70% at 80% 90%, rgba(180, 130, 70, 0.30) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255, 240, 230, 0.10) 0%, transparent 70%),
                 linear-gradient(160deg, #1a0f0e 0%, #2c1a16 40%, #1f1409 100%);
         }
 
@@ -54,8 +63,15 @@
         }
 
         @keyframes fall {
-            0%   { transform: translateY(-30px) rotate(0deg);    opacity: 0.8; }
-            100% { transform: translateY(110vh)  rotate(360deg);  opacity: 0;   }
+            0% {
+                transform: translateY(-30px) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* ===== LAYOUT ===== */
@@ -76,22 +92,32 @@
             background: var(--glass);
             backdrop-filter: blur(22px);
             -webkit-backdrop-filter: blur(22px);
-            border: 1px solid rgba(255,255,255,0.28);
+            border: 1px solid rgba(255, 255, 255, 0.28);
             border-radius: 32px;
             padding: 40px 30px;
             box-shadow:
                 0 8px 40px var(--shadow),
-                inset 0 1px 0 rgba(255,255,255,0.3);
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0)    scale(1);    }
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         /* ===== HEADER ===== */
-        .header { text-align: center; margin-bottom: 32px; }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
 
         .subtitle-top {
             font-size: 10px;
@@ -108,7 +134,7 @@
             font-weight: 300;
             line-height: 1;
             color: #fff;
-            text-shadow: 0 2px 20px rgba(230,170,140,0.4);
+            text-shadow: 0 2px 20px rgba(230, 170, 140, 0.4);
             letter-spacing: 0.02em;
         }
 
@@ -127,18 +153,23 @@
             gap: 12px;
             margin: 20px 0;
         }
-        .divider::before, .divider::after {
+
+        .divider::before,
+        .divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: linear-gradient(to right, transparent, var(--gold), transparent);
             opacity: 0.6;
         }
-        .divider span { font-size: 16px; }
+
+        .divider span {
+            font-size: 16px;
+        }
 
         .tagline {
             font-size: 13px;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             font-weight: 300;
             line-height: 1.7;
             margin-bottom: 0;
@@ -150,10 +181,10 @@
             display: inline-block;
             margin-bottom: 24px;
             padding: 10px 24px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 100px;
-            background: rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.8);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
             font-family: 'Montserrat', sans-serif;
             font-size: 12px;
             text-transform: uppercase;
@@ -161,9 +192,9 @@
             letter-spacing: 0.1em;
             transition: all 0.2s;
         }
-        
+
         .btn-nav:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: #fff;
             border-color: var(--gold);
         }
@@ -178,7 +209,9 @@
             text-align: center;
         }
 
-        .field { margin-bottom: 14px; }
+        .field {
+            margin-bottom: 14px;
+        }
 
         input[type="text"],
         input[type="email"],
@@ -186,8 +219,8 @@
             width: 100%;
             padding: 13px 16px;
             border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.10);
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
@@ -197,15 +230,22 @@
             -webkit-appearance: none;
         }
 
-        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35); }
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
 
-        input:focus, textarea:focus {
+        input:focus,
+        textarea:focus {
             border-color: var(--rose);
-            background: rgba(255,255,255,0.16);
+            background: rgba(255, 255, 255, 0.16);
             box-shadow: 0 0 0 3px rgba(232, 180, 164, 0.20);
         }
 
-        textarea { resize: none; height: 90px; }
+        textarea {
+            resize: none;
+            height: 90px;
+        }
 
         /* ===== PHOTO PICKER BUTTONS ===== */
         .picker-row {
@@ -224,8 +264,8 @@
             padding: 18px 10px;
             border-radius: 16px;
             border: 1.5px dashed rgba(200, 168, 120, 0.45);
-            background: rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.65);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.65);
             font-family: 'Montserrat', sans-serif;
             font-size: 12px;
             font-weight: 400;
@@ -251,11 +291,13 @@
             font-size: 0;
         }
 
-        .btn-picker .pick-icon { font-size: 26px; }
+        .btn-picker .pick-icon {
+            font-size: 26px;
+        }
 
         .picker-hint {
             font-size: 10px;
-            color: rgba(255,255,255,0.28);
+            color: rgba(255, 255, 255, 0.28);
             text-align: center;
             margin-bottom: 14px;
             letter-spacing: 0.03em;
@@ -279,7 +321,7 @@
             border-radius: 10px;
             object-fit: cover;
             width: 100%;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             display: block;
         }
 
@@ -290,7 +332,7 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.65);
+            background: rgba(0, 0, 0, 0.65);
             border: none;
             color: #fff;
             font-size: 11px;
@@ -303,11 +345,20 @@
             transition: background 0.15s;
         }
 
-        .thumb-del:hover { background: rgba(220,60,60,0.85); }
+        .thumb-del:hover {
+            background: rgba(220, 60, 60, 0.85);
+        }
 
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.85); }
-            to   { opacity: 1; transform: scale(1);    }
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* ===== BUTTON ===== */
@@ -334,7 +385,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
             opacity: 0;
             transition: opacity 0.2s;
         }
@@ -345,9 +396,13 @@
             filter: brightness(1.08);
         }
 
-        .btn-send:hover::before { opacity: 1; }
+        .btn-send:hover::before {
+            opacity: 1;
+        }
 
-        .btn-send:active:not(:disabled) { transform: scale(0.98); }
+        .btn-send:active:not(:disabled) {
+            transform: scale(0.98);
+        }
 
         .btn-send:disabled {
             opacity: 0.65;
@@ -359,7 +414,7 @@
         .progress-wrap {
             display: none;
             margin-bottom: 16px;
-            background: rgba(255,255,255,0.10);
+            background: rgba(255, 255, 255, 0.10);
             border-radius: 100px;
             height: 8px;
             overflow: hidden;
@@ -375,7 +430,7 @@
 
         .progress-text {
             font-size: 11px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             text-align: center;
             margin-top: 6px;
             margin-bottom: 12px;
@@ -390,15 +445,30 @@
             animation: slideUp 0.5s ease both;
         }
 
-        .state-msg .big-icon { font-size: 52px; display: block; margin-bottom: 12px; }
-        .state-msg h3 { color: #fff; font-size: 20px; font-weight: 400; margin-bottom: 8px; }
-        .state-msg p  { color: rgba(255,255,255,0.55); font-size: 13px; font-weight: 300; }
+        .state-msg .big-icon {
+            font-size: 52px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .state-msg h3 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .state-msg p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 13px;
+            font-weight: 300;
+        }
 
         .btn-again {
             margin-top: 20px;
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.25);
-            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.7);
             padding: 10px 28px;
             border-radius: 100px;
             font-family: 'Montserrat', sans-serif;
@@ -410,7 +480,7 @@
         .btn-again:hover {
             border-color: var(--gold);
             color: var(--gold);
-            background: rgba(201,168,76,0.08);
+            background: rgba(201, 168, 76, 0.08);
         }
 
         /* ===== FOOTER ===== */
@@ -419,134 +489,141 @@
             font-size: 10px;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.22);
+            color: rgba(255, 255, 255, 0.22);
             text-align: center;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 380px) {
-            .card { padding: 28px 18px; border-radius: 24px; }
-            .name { font-size: 52px; }
+            .card {
+                padding: 28px 18px;
+                border-radius: 24px;
+            }
+
+            .name {
+                font-size: 52px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<!-- Fondo animado -->
-<div class="bg-wrap" id="bg-wrap"></div>
+    <!-- Fondo animado -->
+    <div class="bg-wrap" id="bg-wrap"></div>
 
-<div class="page">
-    <div class="card" id="card">
+    <div class="page">
+        <div class="card" id="card">
 
-        <div style="text-align: right;">
-            <a href="galeria.html" class="btn-nav">Ver Galería →</a>
-        </div>
-
-        <!-- CABECERA -->
-        <div class="header">
-            <span class="subtitle-top">Estás invitada a celebrar</span>
-            <div class="name">Valeria</div>
-            <span class="subtitle-bottom">Mis Quince Años ✨</span>
-
-            <div class="divider"><span>🌸</span></div>
-
-            <p class="tagline">
-                20 de Diciembre de 2026 · 20:00 hs<br>
-                <span style="color:rgba(255,255,255,0.4); font-size:11px;">Quinta "Las Camelias", Caracas</span>
-            </p>
-        </div>
-
-        <!-- FORMULARIO DE FOTOS -->
-        <div id="form-section">
-            <p class="section-title">📸 Fotos y Videos para Valeria</p>
-
-            <div class="field">
-                <input type="text" id="inp-name" placeholder="Tu nombre" required autocomplete="name">
+            <div style="text-align: right;">
+                <a href="galeria.html" class="btn-nav">Ver Galería →</a>
             </div>
 
-            <div class="field">
-                <input type="email" id="inp-email" placeholder="Tu correo (opcional)" autocomplete="email">
+            <!-- CABECERA -->
+            <div class="header">
+                <span class="subtitle-top">Gracias por asistir </span>
+                <div class="name">Valeria</div>
+                <span class="subtitle-bottom">Mis Quince Años ✨</span>
+
+                <div class="divider"><span>🌸</span></div>
+
+                <p class="tagline">
+                    13 de Junio de 2026 · 20:00 hs<br>
+                    <span style="color:rgba(255,255,255,0.4); font-size:11px;">Quinta "Las Camelias", Caracas</span>
+                </p>
             </div>
 
-            <div class="field">
-                <textarea id="inp-message" placeholder="Escríbele un mensaje a Valeria... 💌"></textarea>
+            <!-- FORMULARIO DE FOTOS -->
+            <div id="form-section">
+                <p class="section-title">📸 Fotos y Videos para Valeria</p>
+
+                <div class="field">
+                    <input type="text" id="inp-name" placeholder="Tu nombre" required autocomplete="name">
+                </div>
+
+                <div class="field">
+                    <input type="email" id="inp-email" placeholder="Tu correo (opcional)" autocomplete="email">
+                </div>
+
+                <div class="field">
+                    <textarea id="inp-message" placeholder="Escríbele un mensaje a Valeria... 💌"></textarea>
+                </div>
+
+                <!-- Botones de selección de fotos y videos -->
+                <div class="picker-row">
+                    <!-- Foto con cámara -->
+                    <label class="btn-picker" id="btn-camera">
+                        <input type="file" id="inp-camera" accept="image/*" capture="environment">
+                        <span class="pick-icon">📷</span>
+                        <span>Foto</span>
+                    </label>
+
+                    <!-- Video con cámara -->
+                    <label class="btn-picker" id="btn-video">
+                        <input type="file" id="inp-video" accept="video/*" capture="environment">
+                        <span class="pick-icon">🎬</span>
+                        <span>Video</span>
+                    </label>
+
+                    <!-- Galería (fotos y videos existentes) -->
+                    <label class="btn-picker" id="btn-gallery">
+                        <input type="file" id="inp-gallery" accept="image/*,video/*" multiple>
+                        <span class="pick-icon">🖼️</span>
+                        <span>Galería</span>
+                    </label>
+                </div>
+                <p class="picker-hint">Fotos · Videos · JPG · PNG · MP4 · MOV &nbsp;·&nbsp; máx. 45 MB por archivo</p>
+
+                <!-- Miniaturas de previsualización -->
+                <div id="preview-grid"></div>
+
+                <!-- Barra de progreso -->
+                <div class="progress-wrap" id="progress-wrap">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <p class="progress-text" id="progress-text"></p>
+
+                <button class="btn-send" id="btn-send" onclick="enviarFotos()">
+                    Enviar a Valeria
+                </button>
             </div>
 
-            <!-- Botones de selección de fotos y videos -->
-            <div class="picker-row">
-                <!-- Foto con cámara -->
-                <label class="btn-picker" id="btn-camera">
-                    <input type="file" id="inp-camera" accept="image/*" capture="environment">
-                    <span class="pick-icon">📷</span>
-                    <span>Foto</span>
-                </label>
-
-                <!-- Video con cámara -->
-                <label class="btn-picker" id="btn-video">
-                    <input type="file" id="inp-video" accept="video/*" capture="environment">
-                    <span class="pick-icon">🎬</span>
-                    <span>Video</span>
-                </label>
-
-                <!-- Galería (fotos y videos existentes) -->
-                <label class="btn-picker" id="btn-gallery">
-                    <input type="file" id="inp-gallery" accept="image/*,video/*" multiple>
-                    <span class="pick-icon">🖼️</span>
-                    <span>Galería</span>
-                </label>
+            <!-- ESTADO ÉXITO -->
+            <div class="state-msg" id="msg-success">
+                <span class="big-icon">💖</span>
+                <h3>¡Gracias por compartir!</h3>
+                <p>Tus fotos y tu mensaje ya están<br>guardados en el álbum de Valeria.</p>
+                <button class="btn-again" onclick="reiniciar()">Subir más fotos</button>
             </div>
-            <p class="picker-hint">Fotos · Videos · JPG · PNG · MP4 · MOV &nbsp;·&nbsp; máx. 45 MB por archivo</p>
 
-            <!-- Miniaturas de previsualización -->
-            <div id="preview-grid"></div>
-
-            <!-- Barra de progreso -->
-            <div class="progress-wrap" id="progress-wrap">
-                <div class="progress-bar" id="progress-bar"></div>
+            <!-- ESTADO ERROR -->
+            <div class="state-msg" id="msg-error">
+                <span class="big-icon">😕</span>
+                <h3>Algo falló</h3>
+                <p id="error-detail">Por favor revisa tu conexión e intenta de nuevo.</p>
+                <button class="btn-again" onclick="reiniciar()">Intentar de nuevo</button>
             </div>
-            <p class="progress-text" id="progress-text"></p>
 
-            <button class="btn-send" id="btn-send" onclick="enviarFotos()">
-                Enviar a Valeria
-            </button>
         </div>
 
-        <!-- ESTADO ÉXITO -->
-        <div class="state-msg" id="msg-success">
-            <span class="big-icon">💖</span>
-            <h3>¡Gracias por compartir!</h3>
-            <p>Tus fotos y tu mensaje ya están<br>guardados en el álbum de Valeria.</p>
-            <button class="btn-again" onclick="reiniciar()">Subir más fotos</button>
-        </div>
-
-        <!-- ESTADO ERROR -->
-        <div class="state-msg" id="msg-error">
-            <span class="big-icon">😕</span>
-            <h3>Algo falló</h3>
-            <p id="error-detail">Por favor revisa tu conexión e intenta de nuevo.</p>
-            <button class="btn-again" onclick="reiniciar()">Intentar de nuevo</button>
-        </div>
-
+        <p class="footer">Hecho con amor para Valeria · 2026</p>
     </div>
 
-    <p class="footer">Hecho con amor para Valeria · 2026</p>
-</div>
+    <script>
+        // ============================================================
+        //  CONFIGURACIÓN — Pegá aquí tu URL de Google Apps Script
+        // ============================================================
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3-c0mBkXcO5pupjH3IYIlht0gwcmTNgzCJr853V3YkKCzlce-dg6mo9bzEpJ0gDyKag/exec";
+        // ============================================================
 
-<script>
-// ============================================================
-//  CONFIGURACIÓN — Pegá aquí tu URL de Google Apps Script
-// ============================================================
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3-c0mBkXcO5pupjH3IYIlht0gwcmTNgzCJr853V3YkKCzlce-dg6mo9bzEpJ0gDyKag/exec";
-// ============================================================
-
-// -------- Pétalos decorativos --------
-(function spawnPetals() {
-    const colors = ['#E8B4A4','#C9A84C','#F5D6CC','#E8C88A','#F9E4DC'];
-    const wrap   = document.getElementById('bg-wrap');
-    for (let i = 0; i < 18; i++) {
-        const p = document.createElement('div');
-        p.className = 'petal';
-        p.style.cssText = `
+        // -------- Pétalos decorativos --------
+        (function spawnPetals() {
+            const colors = ['#E8B4A4', '#C9A84C', '#F5D6CC', '#E8C88A', '#F9E4DC'];
+            const wrap = document.getElementById('bg-wrap');
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('div');
+                p.className = 'petal';
+                p.style.cssText = `
             left: ${Math.random() * 100}vw;
             background: ${colors[Math.random() * colors.length | 0]};
             width: ${6 + Math.random() * 10}px;
@@ -555,211 +632,228 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3-c0mBkXcO5pu
             animation-delay: ${Math.random() * 12}s;
             border-radius: ${Math.random() > 0.5 ? '50%' : '70% 30% 70% 30% / 50% 50%'};
         `;
-        wrap.appendChild(p);
-    }
-})();
+                wrap.appendChild(p);
+            }
+        })();
 
-// -------- Acumulador de fotos --------
-const previewEl = document.getElementById('preview-grid');
-let selectedFiles = [];   // array persistente de File objects
-const MAX_PHOTOS = 10;
+        // -------- Acumulador de fotos --------
+        const previewEl = document.getElementById('preview-grid');
+        let selectedFiles = [];   // array persistente de File objects
+        const MAX_PHOTOS = 10;
 
-const MAX_SIZE_MB = 45;
-const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+        const MAX_SIZE_MB = 45;
+        const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 
-function agregarFotos(nuevos) {
-    const arr = Array.from(nuevos);
-    const rechazados = [];
+        function agregarFotos(nuevos) {
+            const arr = Array.from(nuevos);
+            const rechazados = [];
 
-    arr.forEach(f => {
-        if (f.size > MAX_SIZE_BYTES) {
-            rechazados.push(`${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)`);
-            return;
-        }
-        // evitar duplicados por nombre + tamaño
-        const existe = selectedFiles.some(s => s.name === f.name && s.size === f.size);
-        if (!existe && selectedFiles.length < MAX_PHOTOS) selectedFiles.push(f);
-    });
+            arr.forEach(f => {
+                if (f.size > MAX_SIZE_BYTES) {
+                    rechazados.push(`${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)`);
+                    return;
+                }
+                // evitar duplicados por nombre + tamaño
+                const existe = selectedFiles.some(s => s.name === f.name && s.size === f.size);
+                if (!existe && selectedFiles.length < MAX_PHOTOS) selectedFiles.push(f);
+            });
 
-    if (rechazados.length > 0) {
-        alert(`⚠️ ${rechazados.length} archivo(s) superan el límite de ${MAX_SIZE_MB} MB y no se agregaron:\n\n${rechazados.join('\n')}`);
-    }
+            if (rechazados.length > 0) {
+                alert(`⚠️ ${rechazados.length} archivo(s) superan el límite de ${MAX_SIZE_MB} MB y no se agregaron:\n\n${rechazados.join('\n')}`);
+            }
 
-    renderPreviews();
-}
-
-function renderPreviews() {
-    previewEl.innerHTML = '';
-    selectedFiles.forEach((file, idx) => {
-        const wrap = document.createElement('div');
-        wrap.className = 'thumb-wrap';
-
-        const isVideo = file.type.startsWith('video/');
-        const url = URL.createObjectURL(file);
-
-        let media;
-        if (isVideo) {
-            media = document.createElement('video');
-            media.className = 'preview-thumb';
-            media.src = url;
-            media.muted = true;
-            media.playsInline = true;
-            media.controls = false;          // solo muestra el thumb
-            media.preload = 'metadata';      // carga el primer frame
-            // liberar la URL cuando se carguen los metadatos
-            media.onloadedmetadata = () => URL.revokeObjectURL(url);
-            // reproducir brevemente para mostrar el primer frame
-            media.addEventListener('loadeddata', () => {
-                media.currentTime = 0.5;
-            }, { once: true });
-        } else {
-            media = document.createElement('img');
-            media.className = 'preview-thumb';
-            media.src = url;
-            media.onload = () => URL.revokeObjectURL(url);
+            renderPreviews();
         }
 
-        const del = document.createElement('button');
-        del.className = 'thumb-del';
-        del.innerHTML = '✕';
-        del.title = isVideo ? 'Quitar video' : 'Quitar foto';
-        del.onclick = (e) => { e.preventDefault(); selectedFiles.splice(idx, 1); renderPreviews(); };
+        function renderPreviews() {
+            previewEl.innerHTML = '';
+            selectedFiles.forEach((file, idx) => {
+                const wrap = document.createElement('div');
+                wrap.className = 'thumb-wrap';
 
-        // Etiqueta de tipo para videos
-        if (isVideo) {
-            const badge = document.createElement('span');
-            badge.style.cssText = 'position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,0.6);color:#fff;font-size:9px;padding:2px 5px;border-radius:6px;pointer-events:none;';
-            badge.textContent = '▶ VIDEO';
-            wrap.appendChild(badge);
-        }
+                const isVideo = file.type.startsWith('video/');
+                const url = URL.createObjectURL(file);
 
-        wrap.appendChild(media);
-        wrap.appendChild(del);
-        previewEl.appendChild(wrap);
-    });
-}
+                let media;
+                if (isVideo) {
+                    media = document.createElement('video');
+                    media.className = 'preview-thumb';
+                    media.src = url;
+                    media.muted = true;
+                    media.playsInline = true;
+                    media.controls = false;          // solo muestra el thumb
+                    media.preload = 'metadata';      // carga el primer frame
+                    // liberar la URL cuando se carguen los metadatos
+                    media.onloadedmetadata = () => URL.revokeObjectURL(url);
+                    // reproducir brevemente para mostrar el primer frame
+                    media.addEventListener('loadeddata', () => {
+                        media.currentTime = 0.5;
+                    }, { once: true });
+                } else {
+                    media = document.createElement('img');
+                    media.className = 'preview-thumb';
+                    media.src = url;
+                    media.onload = () => URL.revokeObjectURL(url);
+                }
 
-// Conectar los tres inputs al acumulador
-['inp-camera', 'inp-video', 'inp-gallery'].forEach(id => {
-    document.getElementById(id).addEventListener('change', function() {
-        agregarFotos(this.files);
-        this.value = '';   // reset para poder seleccionar de nuevo
-    });
-});
+                const del = document.createElement('button');
+                del.className = 'thumb-del';
+                del.innerHTML = '✕';
+                del.title = isVideo ? 'Quitar video' : 'Quitar foto';
+                del.onclick = (e) => { e.preventDefault(); selectedFiles.splice(idx, 1); renderPreviews(); };
 
-// -------- Convertir a Base64 --------
-function toBase64(file) {
-    return new Promise((res, rej) => {
-        const r = new FileReader();
-        r.readAsDataURL(file);
-        r.onload  = () => res(r.result.split(',')[1]);
-        r.onerror = rej;
-    });
-}
+                // Etiqueta de tipo para videos
+                if (isVideo) {
+                    const badge = document.createElement('span');
+                    badge.style.cssText = 'position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,0.6);color:#fff;font-size:9px;padding:2px 5px;border-radius:6px;pointer-events:none;';
+                    badge.textContent = '▶ VIDEO';
+                    wrap.appendChild(badge);
+                }
 
-// -------- Función principal --------
-async function enviarFotos() {
-    const name    = document.getElementById('inp-name').value.trim();
-    const email   = document.getElementById('inp-email').value.trim();
-    const message = document.getElementById('inp-message').value.trim();
-    const files   = selectedFiles.slice(0, MAX_PHOTOS);
-
-    // Validación básica
-    if (!name) { shake(document.getElementById('inp-name')); return; }
-    if (files.length === 0) { shake(document.getElementById('btn-gallery')); return; }
-
-    // ¿Ya configuraste la URL?
-    if (APPS_SCRIPT_URL === "PEGAR_URL_DE_GOOGLE_APPS_SCRIPT_AQUI") {
-        alert("⚠️ Atención: Primero configura la URL de Google Apps Script en el código.\n\nMira el archivo INSTRUCCIONES_DRIVE.md");
-        return;
-    }
-
-    // Bloquear UI
-    const btn = document.getElementById('btn-send');
-    btn.disabled = true;
-
-    const progressWrap = document.getElementById('progress-wrap');
-    const progressBar  = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
-    progressWrap.style.display = 'block';
-    progressText.style.display = 'block';
-
-    try {
-        for (let i = 0; i < files.length; i++) {
-            const file   = files[i];
-            const b64    = await toBase64(file);
-            const pct    = Math.round(((i) / files.length) * 90);
-            progressBar.style.width = pct + '%';
-            progressText.textContent = `Enviando foto ${i + 1} de ${files.length}...`;
-
-            await fetch(APPS_SCRIPT_URL, {
-                method: 'POST',
-                mode:   'no-cors',   // requerido por Apps Script
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    message,
-                    fileName: file.name,
-                    mimeType: file.type,
-                    data: b64,
-                    isFirst: i === 0   // para escribir fila de resumen solo una vez
-                })
+                wrap.appendChild(media);
+                wrap.appendChild(del);
+                previewEl.appendChild(wrap);
             });
         }
 
-        progressBar.style.width = '100%';
-        setTimeout(() => mostrar('success'), 400);
+        // Conectar los tres inputs al acumulador
+        ['inp-camera', 'inp-video', 'inp-gallery'].forEach(id => {
+            document.getElementById(id).addEventListener('change', function () {
+                agregarFotos(this.files);
+                this.value = '';   // reset para poder seleccionar de nuevo
+            });
+        });
 
-    } catch (err) {
-        console.error(err);
-        document.getElementById('error-detail').textContent = err.message || 'Error de red. Intenta de nuevo.';
-        mostrar('error');
-    }
-}
+        // -------- Convertir a Base64 --------
+        function toBase64(file) {
+            return new Promise((res, rej) => {
+                const r = new FileReader();
+                r.readAsDataURL(file);
+                r.onload = () => res(r.result.split(',')[1]);
+                r.onerror = rej;
+            });
+        }
 
-// -------- UI helpers --------
-function mostrar(estado) {
-    document.getElementById('form-section').style.display  = 'none';
-    document.getElementById('msg-success').style.display   = estado === 'success' ? 'block' : 'none';
-    document.getElementById('msg-error').style.display     = estado === 'error'   ? 'block' : 'none';
-}
+        // -------- Función principal --------
+        async function enviarFotos() {
+            const name = document.getElementById('inp-name').value.trim();
+            const email = document.getElementById('inp-email').value.trim();
+            const message = document.getElementById('inp-message').value.trim();
+            const files = selectedFiles.slice(0, MAX_PHOTOS);
 
-function reiniciar() {
-    document.getElementById('inp-name').value    = '';
-    document.getElementById('inp-email').value   = '';
-    document.getElementById('inp-message').value = '';
-    document.getElementById('inp-camera').value  = '';
-    document.getElementById('inp-video').value   = '';
-    document.getElementById('inp-gallery').value = '';
-    selectedFiles = [];
-    previewEl.innerHTML = '';
-    document.getElementById('progress-wrap').style.display = 'none';
-    document.getElementById('progress-text').style.display = 'none';
-    document.getElementById('progress-bar').style.width    = '0%';
-    document.getElementById('btn-send').disabled = false;
-    document.getElementById('form-section').style.display  = 'block';
-    document.getElementById('msg-success').style.display   = 'none';
-    document.getElementById('msg-error').style.display     = 'none';
-}
+            // Validación básica
+            if (!name) { shake(document.getElementById('inp-name')); return; }
+            if (files.length === 0) { shake(document.getElementById('btn-gallery')); return; }
 
-function shake(el) {
-    el.style.animation = 'none';
-    el.offsetHeight; // reflow
-    el.style.animation = 'shake 0.4s ease';
-    el.addEventListener('animationend', () => el.style.animation = '', { once: true });
-}
-</script>
+            // ¿Ya configuraste la URL?
+            if (APPS_SCRIPT_URL === "PEGAR_URL_DE_GOOGLE_APPS_SCRIPT_AQUI") {
+                alert("⚠️ Atención: Primero configura la URL de Google Apps Script en el código.\n\nMira el archivo INSTRUCCIONES_DRIVE.md");
+                return;
+            }
 
-<style>
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%       { transform: translateX(-8px); }
-    40%       { transform: translateX( 8px); }
-    60%       { transform: translateX(-5px); }
-    80%       { transform: translateX( 5px); }
-}
-</style>
+            // Bloquear UI
+            const btn = document.getElementById('btn-send');
+            btn.disabled = true;
+
+            const progressWrap = document.getElementById('progress-wrap');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            progressWrap.style.display = 'block';
+            progressText.style.display = 'block';
+
+            try {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const b64 = await toBase64(file);
+                    const pct = Math.round(((i) / files.length) * 90);
+                    progressBar.style.width = pct + '%';
+                    progressText.textContent = `Enviando foto ${i + 1} de ${files.length}...`;
+
+                    await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',   // requerido por Apps Script
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            message,
+                            fileName: file.name,
+                            mimeType: file.type,
+                            data: b64,
+                            isFirst: i === 0   // para escribir fila de resumen solo una vez
+                        })
+                    });
+                }
+
+                progressBar.style.width = '100%';
+                setTimeout(() => mostrar('success'), 400);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-detail').textContent = err.message || 'Error de red. Intenta de nuevo.';
+                mostrar('error');
+            }
+        }
+
+        // -------- UI helpers --------
+        function mostrar(estado) {
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('msg-success').style.display = estado === 'success' ? 'block' : 'none';
+            document.getElementById('msg-error').style.display = estado === 'error' ? 'block' : 'none';
+        }
+
+        function reiniciar() {
+            document.getElementById('inp-name').value = '';
+            document.getElementById('inp-email').value = '';
+            document.getElementById('inp-message').value = '';
+            document.getElementById('inp-camera').value = '';
+            document.getElementById('inp-video').value = '';
+            document.getElementById('inp-gallery').value = '';
+            selectedFiles = [];
+            previewEl.innerHTML = '';
+            document.getElementById('progress-wrap').style.display = 'none';
+            document.getElementById('progress-text').style.display = 'none';
+            document.getElementById('progress-bar').style.width = '0%';
+            document.getElementById('btn-send').disabled = false;
+            document.getElementById('form-section').style.display = 'block';
+            document.getElementById('msg-success').style.display = 'none';
+            document.getElementById('msg-error').style.display = 'none';
+        }
+
+        function shake(el) {
+            el.style.animation = 'none';
+            el.offsetHeight; // reflow
+            el.style.animation = 'shake 0.4s ease';
+            el.addEventListener('animationend', () => el.style.animation = '', { once: true });
+        }
+    </script>
+
+    <style>
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-8px);
+            }
+
+            40% {
+                transform: translateX(8px);
+            }
+
+            60% {
+                transform: translateX(-5px);
+            }
+
+            80% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
 
 </body>
+
 </html>
